@@ -92,5 +92,18 @@ def skill_match_score(resume_text, jd_text):
     score = len(resume_skills & jd_skills) / len(jd_skills)
     return round(score * 100, 2)
 
+def extract_skills_from_text(text):
+    text = text.lower()
+    return {skill for skill in SKILLS if skill in text}
+
+def combined_score(resume_text, jd_text):
+    skill_score = skill_match_score(resume_text, jd_text)
+    text_score = calculate_score(resume_text, jd_text)
+
+    final = (0.7 * skill_score) + (0.3 * text_score)
+    return round(final, 2)
+
+
+
 
 
