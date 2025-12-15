@@ -3,12 +3,19 @@ import os
 
 from utils.extract_text import extract_text
 from utils.preprocess import preprocess
-from utils.scoring import calculate_score, find_missing_skills
+from utils.scoring import skill_match_score, find_missing_skills
+
+
 
 app = Flask(__name__)
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+@app.route("/test")
+def test():
+    print("🔥 UPDATED FLASK CODE RUNNING")
+    return {"msg": "UPDATED RESPONSE"}
 
 
 @app.route("/analyze", methods=["POST"])
@@ -28,7 +35,8 @@ def analyze_resume():
     resume_text = preprocess(extract_text(resume_path))
     jd_text = preprocess(extract_text(jd_path))
 
-    score = calculate_score(resume_text, jd_text)
+    score = skill_match_score(resume_text, jd_text)
+
     missing_skills = find_missing_skills(resume_text, jd_text)
 
     return jsonify({
@@ -39,3 +47,5 @@ def analyze_resume():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
