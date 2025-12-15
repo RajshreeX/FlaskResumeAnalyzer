@@ -22,6 +22,15 @@ A full-stack AI-powered web application that analyzes how well a resume matches 
 
 ---
 
+## ⭐ Key Highlights
+
+- Explainable AI scoring (not black-box)
+- Real-world hiring use case
+- Full-stack architecture
+- Clean REST API design
+
+---
+
 ## 🧠 How It Works
 
 The application combines **rule-based skill matching** with **NLP techniques** to avoid unrealistic or misleading scores.
@@ -133,3 +142,11 @@ npm run dev
 ## 👩‍💻 Author
 
 Built as a portfolio project to demonstrate **full-stack development and applied AI for hiring technology**.
+
+---
+
+📌 This project demonstrates skills relevant for:
+- Software Engineer (Fresher)
+- Full-Stack Developer
+- AI / ML Engineer (Applied NLP)
+
