@@ -9,7 +9,7 @@ export async function analyzeResume(resumeFile, jdFile, jdText) {
     formData.append("jd", jdFile);
   }
 
-  const response = await fetch("https://airesumeanalyzer-idhq.onrender.com/", {
+  const response = await fetch("https://airesumeanalyzer-idhq.onrender.com/analyze", {
     method: "POST",
     body: formData,
   });
