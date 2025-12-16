@@ -36,6 +36,7 @@ button {
   color: white;
   line-height: 30px;
   font-weight: bold;
+  transition: width 0.6s ease-in-out;
 }
 
 
@@ -67,4 +68,62 @@ button {
   border-left: 5px solid #4caf50;
   margin-top: 10px;
 }
+
+.title {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.upload-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.upload-box label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #43a047;
+}
+
+.card {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fafafa;
+  border: 1px solid #eee;
+}
+
+.verdict.good {
+  border-left: 5px solid #4caf50;
+}
+
+.verdict.average {
+  border-left: 5px solid #ff9800;
+}
+
+.tag {
+  text-transform: capitalize;
+}
+
 

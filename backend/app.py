@@ -29,36 +29,43 @@ def get_verdict(score):
 
 @app.route("/analyze", methods=["POST"])
 def analyze_resume():
+
     resume = request.files.get("resume")
-    jd = request.files.get("jd")
+    jd_text = request.form.get("jd_text", "").strip()
+    jd_file = request.files.get("jd")
 
-    if not resume or not jd:
-        return jsonify({"error": "Resume and JD required"}), 400
+    if not resume:
+        return jsonify({"error": "Resume required"}), 400
 
+    if not jd_text and not jd_file:
+        return jsonify({"error": "Job description required"}), 400
+
+    # Save and process resume
     resume_path = os.path.join(UPLOAD_FOLDER, resume.filename)
-    jd_path = os.path.join(UPLOAD_FOLDER, jd.filename)
-
     resume.save(resume_path)
-    jd.save(jd_path)
-
     resume_text = preprocess(extract_text(resume_path))
-    jd_text = preprocess(extract_text(jd_path))
+
+    # Process JD
+    if jd_text:
+        jd_text = preprocess(jd_text)
+    else:
+        jd_path = os.path.join(UPLOAD_FOLDER, jd_file.filename)
+        jd_file.save(jd_path)
+        jd_text = preprocess(extract_text(jd_path))
 
     score = combined_score(resume_text, jd_text)
-    verdict=get_verdict(score)
+    verdict = get_verdict(score)
+
     resume_skills = extract_skills_from_text(resume_text)
     jd_skills = extract_skills_from_text(jd_text)
 
-    matched_skills = list(resume_skills & jd_skills)
-    missing_skills = list(jd_skills - resume_skills)
-    
-
     return jsonify({
-    "overall_score": score,
-    "matched_skills": matched_skills,
-    "missing_skills": missing_skills,
-    "verdict": verdict
+        "overall_score": score,
+        "matched_skills": list(resume_skills & jd_skills),
+        "missing_skills": list(jd_skills - resume_skills),
+        "verdict": verdict
     })
+
 
 
 if __name__ == "__main__":
