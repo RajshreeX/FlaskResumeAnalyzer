@@ -6,5 +6,5 @@ SKILLS = [
     "git", "github",
     "data structures", "algorithms",
     "rest api", "api",
-    "web development"
+    "web development", "nextjs", "springboot"
 ]
