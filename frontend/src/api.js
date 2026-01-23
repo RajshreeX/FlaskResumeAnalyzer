@@ -9,7 +9,7 @@ export async function analyzeResume(resumeFile, jdFile, jdText) {
     formData.append("jd", jdFile);
   }
 
-  const response = await fetch("http://127.0.0.1:10000/analyze", {
+  const response = await fetch("https://flaskresumeanalyzer-2.onrender.com/analyze", {
     method: "POST",
     body: formData,
   });
