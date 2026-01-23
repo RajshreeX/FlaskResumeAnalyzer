@@ -17,6 +17,18 @@ def test():
     print("🔥 UPDATED FLASK CODE RUNNING")
     return {"msg": "UPDATED RESPONSE"}
 
+# ────────────────────────────────────────────────
+#  ← Add this small root route (minimal fix)
+@app.route('/')
+def home():
+    return jsonify({
+        "status": "online",
+        "message": "FlaskResumeAnalyzer backend is running",
+        "test_endpoint": "/test",
+        "main_endpoint": "/analyze (POST)"
+    })
+# ────────────────────────────────────────────────
+
 def get_verdict(score):
     if score >= 70:
         return "Strong fit for the role"
